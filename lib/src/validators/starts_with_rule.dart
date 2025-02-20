@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a rule that checks if a field starts with a specific prefix.
 extension StartsWithExtensions on Validator {
+  /// Adds a [StartsWithRule] to the validator.
+  ///
+  /// [prefix] is the string that the field value should start with.
+  /// [errorMessage] is an optional custom error message.
   Validator startsWith(String prefix, {String? errorMessage}) {
     addRule(StartsWithRule(prefix, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A [ValidatorRule] that checks if a field starts with a specific prefix.
 class StartsWithRule extends ValidatorRule {
+  /// The prefix that the field value should start with.
   final String prefix;
 
+  /// Creates a [StartsWithRule] with the given [prefix] and an optional [errorMessage].
   const StartsWithRule(this.prefix, {super.errorMessage});
 
+  /// Validates if the [value] starts with the [prefix].
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null) return null;
@@ -24,6 +35,7 @@ class StartsWithRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Field must start with "$prefix"',

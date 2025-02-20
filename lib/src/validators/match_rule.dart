@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add match validation rule.
 extension MatchExtensions on Validator {
+  /// Adds a [MatchRule] to the validator.
+  ///
+  /// The [pattern] is the regular expression pattern to match.
+  /// The [errorMessage] is the optional error message to display if validation fails.
   Validator match(Pattern pattern, {String? errorMessage}) {
     addRule(MatchRule(pattern, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value matches a given pattern.
 class MatchRule extends ValidatorRule {
+  /// The pattern to match against the value.
   final Pattern pattern;
 
+  /// Creates a [MatchRule] with the given [pattern] and optional [errorMessage].
   const MatchRule(this.pattern, {super.errorMessage});
 
+  /// Validates the [value] against the [pattern].
+  ///
+  /// Returns `null` if the value matches the pattern, otherwise returns the [errorMessage].
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -25,6 +36,7 @@ class MatchRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value is invalid',

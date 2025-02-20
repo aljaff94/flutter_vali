@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a minimum length validation rule.
 extension MinLengthExtensions on Validator {
+  /// Adds a [MinLengthRule] to the validator.
+  ///
+  /// [minLength] is the minimum number of characters required.
+  /// [errorMessage] is an optional custom error message.
   Validator minLength(int minLength, {String? errorMessage}) {
     addRule(MinLengthRule(minLength, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if the value has a minimum length.
 class MinLengthRule extends ValidatorRule {
+  /// The minimum number of characters required.
   final int minLength;
 
+  /// Creates a [MinLengthRule] with the given [minLength] and optional [errorMessage].
   const MinLengthRule(this.minLength, {super.errorMessage});
 
+  /// Validates if the [value] has at least [minLength] characters.
+  ///
+  /// Returns `null` if the validation passes, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null) return null;
@@ -24,6 +35,7 @@ class MinLengthRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Field must be at least $minLength characters long',

@@ -2,16 +2,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a digits-only validation rule.
 extension DigitsOnlyExtensions on Validator {
+  /// Adds a [DigitsOnlyRule] to the validator.
+  ///
+  /// [errorMessage] is an optional custom error message.
   Validator digitsOnly({String? errorMessage}) {
     addRule(DigitsOnlyRule(errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if the input contains only digits.
 class DigitsOnlyRule extends ValidatorRule {
+  /// Creates a [DigitsOnlyRule] with an optional [errorMessage].
   const DigitsOnlyRule({super.errorMessage});
 
+  /// Validates if the [value] contains only digits.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -22,6 +31,7 @@ class DigitsOnlyRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages in various languages.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Only digits are allowed',

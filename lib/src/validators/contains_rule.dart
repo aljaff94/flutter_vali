@@ -2,18 +2,32 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add contains rule.
 extension ContainsExtensions on Validator {
+  /// Adds a [ContainsRule] to the validator.
+  ///
+  /// The [substring] parameter specifies the substring that must be contained
+  /// in the value. The [errorMessage] parameter is optional and can be used to
+  /// provide a custom error message.
   Validator contains(String substring, {String? errorMessage}) {
     addRule(ContainsRule(substring, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A rule that checks if a value contains a specific substring.
 class ContainsRule extends ValidatorRule {
+  /// The substring that must be contained in the value.
   final String substring;
 
+  /// Creates a new [ContainsRule] with the given [substring] and optional
+  /// [errorMessage].
   const ContainsRule(this.substring, {super.errorMessage});
 
+  /// Checks if the [value] contains the [substring].
+  ///
+  /// Returns `null` if the value contains the substring, otherwise returns
+  /// the error message.
   @override
   String? isValid(BuildContext context, String? value) {
     return value != null && value.contains(substring)
@@ -23,6 +37,7 @@ class ContainsRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Provides default error messages in various languages.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'field must contain "$substring"',

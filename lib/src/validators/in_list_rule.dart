@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add in-list validation rule.
 extension InListExtensions on Validator {
+  /// Adds an [InListRule] to the validator.
+  ///
+  /// [values] is the list of valid values.
+  /// [errorMessage] is the optional error message to display if validation fails.
   Validator inList(List<String> values, {String? errorMessage}) {
     addRule(InListRule(values, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is in a list of valid values.
 class InListRule extends ValidatorRule {
+  /// The list of valid values.
   final List<String> values;
 
+  /// Creates an [InListRule] with the given list of valid [values] and an optional [errorMessage].
   const InListRule(this.values, {super.errorMessage});
 
+  /// Validates if the [value] is in the list of valid values.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns the error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -24,6 +35,7 @@ class InListRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// The default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must be one of: ${values.join(', ')}',
@@ -61,7 +73,7 @@ class InListRule extends ValidatorRule {
     'ro': 'Valoarea trebuie să fie una dintre: ${values.join(', ')}',
     'ru': 'Значение должно быть одним из: ${values.join(', ')}',
     'sr': 'Vrednost mora biti jedna od: ${values.join(', ')}',
-    'sk': 'Hodnota musí byť jednou z: ${values.join(', ')}',
+    'sk': 'Hodnota musí byť jednou з: ${values.join(', ')}',
     'sl': 'Vrednost mora biti ena od: ${values.join(', ')}',
     'es': 'El valor debe ser uno de: ${values.join(', ')}',
     'sv': 'Värdet måste vara ett av: ${values.join(', ')}',

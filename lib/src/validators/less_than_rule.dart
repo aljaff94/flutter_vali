@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a less than rule.
 extension LessThanExtensions on Validator {
+  /// Adds a [LessThanRule] to the validator.
+  ///
+  /// [maxValue] is the maximum value allowed.
+  /// [errorMessage] is the optional error message to display if validation fails.
   Validator lessThan(num maxValue, {String? errorMessage}) {
     addRule(LessThanRule(maxValue, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is less than a specified maximum value.
 class LessThanRule extends ValidatorRule {
+  /// The maximum value allowed.
   final num maxValue;
 
+  /// Creates a [LessThanRule] with the given [maxValue] and optional [errorMessage].
   const LessThanRule(this.maxValue, {super.errorMessage});
 
+  /// Validates if the [value] is less than [maxValue].
+  ///
+  /// Returns `null` if the value is valid, otherwise returns the error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -26,6 +37,7 @@ class LessThanRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must be less than $maxValue',

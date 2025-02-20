@@ -2,19 +2,34 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a between rule.
 extension BetweenExtensions on Validator {
+  /// Adds a [BetweenRule] to the validator.
+  ///
+  /// The [min] and [max] parameters specify the range.
+  /// The [errorMessage] parameter is optional and can be used to provide a custom error message.
   Validator between(num min, num max, {String? errorMessage}) {
     addRule(BetweenRule(min, max, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A rule that validates if a value is between a specified range.
 class BetweenRule extends ValidatorRule {
+  /// The minimum value of the range.
   final num min;
+
+  /// The maximum value of the range.
   final num max;
 
+  /// Creates a [BetweenRule] with the specified [min] and [max] values.
+  ///
+  /// The [errorMessage] parameter is optional and can be used to provide a custom error message.
   const BetweenRule(this.min, this.max, {super.errorMessage});
 
+  /// Validates if the [value] is between [min] and [max].
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -26,6 +41,7 @@ class BetweenRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Provides default error messages in various languages.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must be between $min and $max',

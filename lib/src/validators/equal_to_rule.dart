@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add equal to validation rule.
 extension EqualToExtensions on Validator {
+  /// Adds an [EqualToRule] to the validator.
+  ///
+  /// The [target] parameter specifies the value that the input should be equal to.
+  /// The [errorMessage] parameter is optional and can be used to provide a custom error message.
   Validator equalTo(num target, {String? errorMessage}) {
     addRule(EqualToRule(target, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is equal to a target value.
 class EqualToRule extends ValidatorRule {
+  /// The target value that the input should be equal to.
   final num target;
 
+  /// Creates an [EqualToRule] with the given [target] value and an optional [errorMessage].
   const EqualToRule(this.target, {super.errorMessage});
 
+  /// Validates if the [value] is equal to the [target].
+  ///
+  /// Returns `null` if the value is equal to the target, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -25,6 +36,7 @@ class EqualToRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Provides default error messages in multiple languages.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must be equal to $target',

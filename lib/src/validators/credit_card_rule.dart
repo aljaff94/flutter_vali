@@ -2,16 +2,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add credit card validation.
 extension CreditCardExtensions on Validator {
+  /// Adds a credit card validation rule.
+  ///
+  /// [errorMessage] is the custom error message to be used if validation fails.
   Validator creditCard({String? errorMessage}) {
     addRule(CreditCardRule(errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is a valid credit card number.
 class CreditCardRule extends ValidatorRule {
+  /// Creates a [CreditCardRule] with an optional [errorMessage].
   const CreditCardRule({super.errorMessage});
 
+  /// Validates if the [value] is a valid credit card number.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -41,6 +50,7 @@ class CreditCardRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Invalid credit card number',

@@ -2,18 +2,32 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add phone number validation.
 extension PhoneNumberExtensions on Validator {
+  /// Adds a phone number validation rule to the validator.
+  ///
+  /// [pattern] is an optional regex pattern to validate the phone number.
+  /// [errorMessage] is an optional error message to display if validation fails.
   Validator phoneNumber({String? pattern, String? errorMessage}) {
     addRule(PhoneNumberRule(pattern, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is a valid phone number.
 class PhoneNumberRule extends ValidatorRule {
+  /// The regex pattern to validate the phone number.
   final String? pattern;
 
+  /// Creates a new [PhoneNumberRule].
+  ///
+  /// [pattern] is an optional regex pattern to validate the phone number.
+  /// [errorMessage] is an optional error message to display if validation fails.
   const PhoneNumberRule(this.pattern, {super.errorMessage});
 
+  /// Validates the given [value] as a phone number.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -28,6 +42,7 @@ class PhoneNumberRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Invalid phone number',

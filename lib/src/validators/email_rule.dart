@@ -2,16 +2,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add email validation rule.
 extension EmailExtensions on Validator {
+  /// Adds an [EmailRule] to the validator.
+  ///
+  /// [errorMessage] is an optional custom error message.
   Validator email({String? errorMessage}) {
     addRule(EmailRule(errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is a valid email address.
 class EmailRule extends ValidatorRule {
+  /// Creates an [EmailRule] with an optional [errorMessage].
   const EmailRule({super.errorMessage});
 
+  /// Validates if the [value] is a valid email address.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -22,6 +31,7 @@ class EmailRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Invalid email address',

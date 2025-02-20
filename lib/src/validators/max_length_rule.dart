@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a max length validation rule.
 extension MaxLengthExtensions on Validator {
+  /// Adds a [MaxLengthRule] to the validator.
+  ///
+  /// [maxLength] is the maximum allowed length for the field.
+  /// [errorMessage] is an optional custom error message.
   Validator maxLength(int maxLength, {String? errorMessage}) {
     addRule(MaxLengthRule(maxLength, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if the value's length does not exceed a maximum length.
 class MaxLengthRule extends ValidatorRule {
+  /// The maximum allowed length for the field.
   final int maxLength;
 
+  /// Creates a [MaxLengthRule] with the given [maxLength] and an optional [errorMessage].
   const MaxLengthRule(this.maxLength, {super.errorMessage});
 
+  /// Validates if the [value] is at most [maxLength] characters long.
+  ///
+  /// Returns `null` if the validation passes, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null) return null;
@@ -24,6 +35,7 @@ class MaxLengthRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Field must be at most $maxLength characters long',

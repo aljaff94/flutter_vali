@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a rule that checks if a value is not in a list.
 extension NotInListExtensions on Validator {
+  /// Adds a [NotInListRule] to the validator.
+  ///
+  /// [values] is the list of values that the input should not be in.
+  /// [errorMessage] is the optional error message to display if validation fails.
   Validator notInList(List<String> values, {String? errorMessage}) {
     addRule(NotInListRule(values, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A rule that checks if a value is not in a specified list of values.
 class NotInListRule extends ValidatorRule {
+  /// The list of values that the input should not be in.
   final List<String> values;
 
+  /// Creates a [NotInListRule] with the given list of [values] and an optional [errorMessage].
   const NotInListRule(this.values, {super.errorMessage});
 
+  /// Validates if the [value] is not in the list of [values].
+  ///
+  /// Returns `null` if the value is valid, otherwise returns the error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -24,6 +35,7 @@ class NotInListRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// The default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must not be one of: ${values.join(', ')}',

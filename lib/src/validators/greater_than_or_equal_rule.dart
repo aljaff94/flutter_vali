@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add greater than or equal rule.
 extension GreaterThanOrEqualExtensions on Validator {
+  /// Adds a [GreaterThanOrEqualRule] to the validator.
+  ///
+  /// [minValue] is the minimum value that the input should be greater than or equal to.
+  /// [errorMessage] is the optional error message to display if validation fails.
   Validator greaterThanOrEqual(num minValue, {String? errorMessage}) {
     addRule(GreaterThanOrEqualRule(minValue, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is greater than or equal to a specified minimum value.
 class GreaterThanOrEqualRule extends ValidatorRule {
+  /// The minimum value that the input should be greater than or equal to.
   final num minValue;
 
+  /// Creates a [GreaterThanOrEqualRule] with the given [minValue] and optional [errorMessage].
   const GreaterThanOrEqualRule(this.minValue, {super.errorMessage});
 
+  /// Validates if the [value] is greater than or equal to [minValue].
+  ///
+  /// Returns `null` if the validation passes, otherwise returns the error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -26,6 +37,7 @@ class GreaterThanOrEqualRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Value must be greater than or equal to $minValue',

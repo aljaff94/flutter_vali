@@ -2,16 +2,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add a not empty rule.
 extension NotEmptyExtensions on Validator {
+  /// Adds a [NotEmptyRule] to the validator.
+  ///
+  /// [errorMessage] is an optional custom error message.
   Validator notEmpty({String? errorMessage}) {
     addRule(NotEmptyRule(errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A rule that checks if a value is not empty.
 class NotEmptyRule extends ValidatorRule {
+  /// Creates a [NotEmptyRule] with an optional [errorMessage].
   const NotEmptyRule({super.errorMessage});
 
+  /// Validates if the [value] is not empty.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     return value == null || value.trim().isNotEmpty
@@ -21,6 +30,7 @@ class NotEmptyRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages in different languages.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'field is required',

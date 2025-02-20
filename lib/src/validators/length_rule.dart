@@ -2,18 +2,31 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add length validation.
 extension LengthExtensions on Validator {
+  /// Adds a [LengthRule] to the validator.
+  ///
+  /// [exactLength] specifies the exact length the value must be.
+  /// [errorMessage] is an optional custom error message.
   Validator length(num exactLength, {String? errorMessage}) {
     addRule(LengthRule(exactLength, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A rule that validates the length of a value.
 class LengthRule extends ValidatorRule {
+  /// The exact length the value must be.
   final num exactLength;
 
+  /// Creates a [LengthRule] with the specified [exactLength].
+  ///
+  /// [errorMessage] is an optional custom error message.
   const LengthRule(this.exactLength, {super.errorMessage});
 
+  /// Validates the length of the [value].
+  ///
+  /// Returns `null` if the length is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null) return null;
@@ -26,6 +39,7 @@ class LengthRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'field must be exactly $exactLength characters long',

@@ -2,16 +2,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add date validation.
 extension DateExtensions on Validator {
+  /// Adds a [DateRule] to the validator.
+  ///
+  /// [errorMessage] is an optional custom error message.
   Validator date({String? errorMessage}) {
     addRule(DateRule(errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a value is a valid date.
 class DateRule extends ValidatorRule {
+  /// Creates a [DateRule] with an optional [errorMessage].
   const DateRule({super.errorMessage});
 
+  /// Validates if the [value] is a valid date.
+  ///
+  /// Returns `null` if the value is valid, otherwise returns an error message.
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return null;
@@ -25,6 +34,7 @@ class DateRule extends ValidatorRule {
     }
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Invalid date format',

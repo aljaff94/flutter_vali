@@ -2,18 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vali/src/validator.dart';
 import 'package:flutter_vali/src/validator_rule.dart';
 
+/// Extension on [Validator] to add `endsWith` validation rule.
 extension EndsWithExtensions on Validator {
+  /// Adds an [EndsWithRule] to the validator.
+  ///
+  /// The [suffix] parameter specifies the suffix that the field value must end with.
+  /// The [errorMessage] parameter is optional and allows you to specify a custom error message.
   Validator endsWith(String suffix, {String? errorMessage}) {
     addRule(EndsWithRule(suffix, errorMessage: errorMessage));
     return this;
   }
 }
 
+/// A validation rule that checks if a field value ends with a specific suffix.
 class EndsWithRule extends ValidatorRule {
+  /// The suffix that the field value must end with.
   final String suffix;
 
+  /// Creates an [EndsWithRule] with the given [suffix] and optional [errorMessage].
   const EndsWithRule(this.suffix, {super.errorMessage});
 
+  /// Validates if the [value] ends with the specified [suffix].
+  ///
+  /// Returns `null` if the validation passes, otherwise returns the [errorMessage].
   @override
   String? isValid(BuildContext context, String? value) {
     if (value == null) return null;
@@ -24,6 +35,7 @@ class EndsWithRule extends ValidatorRule {
             defaultMessage['en'];
   }
 
+  /// Default error messages for different locales.
   @override
   Map<String, String> get defaultMessage => {
     'en': 'Field must end with "$suffix"',
