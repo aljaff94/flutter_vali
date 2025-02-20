@@ -1,3 +1,7 @@
+## 0.1.3
+
+* add documents to validators classes and functions.
+
 ## 0.1.2
 
 * remove redundant translations for validation messages.

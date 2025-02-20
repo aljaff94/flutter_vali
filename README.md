@@ -8,7 +8,7 @@ Add `flutter_vali` to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_vali: ^0.1.0
+  flutter_vali: ^0.1.3
 ```
 
 Then run `flutter pub get` to install the package.
