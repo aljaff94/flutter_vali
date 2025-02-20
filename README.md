@@ -36,7 +36,7 @@ class ExampleFormWidget extends StatelessWidget {
       body: Form(
         child: Column(
           children: [
-            TextField(
+            TextFormField(
               decoration: InputDecoration(
                 labelText: 'Enter your name',
               ),
@@ -71,7 +71,7 @@ class ExampleFormWidget extends StatelessWidget {
       body: Form(
         child: Column(
           children: [
-            TextField(
+            TextFormField(
               decoration: InputDecoration(
                 labelText: 'Enter your name',
               ),
@@ -153,7 +153,7 @@ extension CustomExtensions on Validator {
 
 ### Supported Localization Languages
 
-Vali supports localization for error messages in the following languages:
+Flutter Vali supports localization for default error messages in the following languages:
 
 - English (en)
 - Arabic (ar)

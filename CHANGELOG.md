@@ -1,3 +1,8 @@
+## 0.1.2
+
+* remove redundant translations for validation messages.
+
+
 ## 0.1.1
 
 * update examples.

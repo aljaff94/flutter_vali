@@ -1,6 +1,6 @@
 name: flutter_vali
 description: "A comprehensive Flutter package for form validation and input handling, designed to simplify user input management and ensure data integrity in your applications."
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/aljaff94/flutter_vali
 
 environment:
