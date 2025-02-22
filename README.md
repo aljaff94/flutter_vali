@@ -8,7 +8,7 @@ Add `flutter_vali` to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_vali: ^0.1.3
+  flutter_vali: latest_version
 ```
 
 Then run `flutter pub get` to install the package.
@@ -18,7 +18,6 @@ Then run `flutter pub get` to install the package.
 ### Basic Usage
 
 To use Flutter Vali, you need to create a `Validator` instance and add validation rules to it. Then, you can use the `build` method to get a validation function that can be used with Flutter form fields.
-
 
 #### Example
 
@@ -53,7 +52,6 @@ class ExampleFormWidget extends StatelessWidget {
   }
 }
 ```
-
 
 #### Example with fluent validation style
 
@@ -91,30 +89,29 @@ class ExampleFormWidget extends StatelessWidget {
 
 ### Available Validation Rules
 
-| Rule | Description |
-|------|-------------|
-| `notEmpty({String? errorMessage})` | Validates that the input is not empty. |
-| `length({int length, String? errorMessage})` | Validates that the input length is exactly the specified value. |
-| `minLength({int min, String? errorMessage})` | Validates that the input length is at least the given minimum. |
-| `maxLength({int max, String? errorMessage})` | Validates that the input length is at most the given maximum. |
-| `greaterThan({num value, String? errorMessage})` | Validates that the input is greater than the specified value. |
+| Rule                                                    | Description                                                               |
+| ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `notEmpty({String? errorMessage})`                      | Validates that the input is not empty.                                    |
+| `length({int length, String? errorMessage})`            | Validates that the input length is exactly the specified value.           |
+| `minLength({int min, String? errorMessage})`            | Validates that the input length is at least the given minimum.            |
+| `maxLength({int max, String? errorMessage})`            | Validates that the input length is at most the given maximum.             |
+| `greaterThan({num value, String? errorMessage})`        | Validates that the input is greater than the specified value.             |
 | `greaterThanOrEqual({num value, String? errorMessage})` | Validates that the input is greater than or equal to the specified value. |
-| `lessThan({num value, String? errorMessage})` | Validates that the input is less than the specified value. |
-| `lessThanOrEqual({num value, String? errorMessage})` | Validates that the input is less than or equal to the specified value. |
-| `equalTo({dynamic value, String? errorMessage})` | Validates that the input is equal to the specified value. |
-| `between({num min, num max, String? errorMessage})` | Validates that the input is between the two specified values (inclusive). |
-| `contains({String substring, String? errorMessage})` | Validates that the input contains the specified substring. |
-| `match({RegExp pattern, String? errorMessage})` | Validates that the input matches the given regular expression pattern. |
-| `startsWith({String prefix, String? errorMessage})` | Validates that the input starts with the specified substring. |
-| `endsWith({String suffix, String? errorMessage})` | Validates that the input ends with the specified substring. |
-| `digitsOnly({String? errorMessage})` | Validates that the input consists of digits only. |
-| `email({String? errorMessage})` | Validates that the input is a valid email address. |
-| `phoneNumber({String? errorMessage})` | Validates that the input is a valid phone number. |
-| `creditCard({String? errorMessage})` | Validates that the input is a valid credit card number. |
-| `inList({List allowed, String? errorMessage})` | Validates that the input is included in the specified list. |
-| `notInList({List disallowed, String? errorMessage})` | Validates that the input is not included in the specified list. |
-| `date({String? errorMessage})` | Validates that the input is a valid date. |
-
+| `lessThan({num value, String? errorMessage})`           | Validates that the input is less than the specified value.                |
+| `lessThanOrEqual({num value, String? errorMessage})`    | Validates that the input is less than or equal to the specified value.    |
+| `equalTo({dynamic value, String? errorMessage})`        | Validates that the input is equal to the specified value.                 |
+| `between({num min, num max, String? errorMessage})`     | Validates that the input is between the two specified values (inclusive). |
+| `contains({String substring, String? errorMessage})`    | Validates that the input contains the specified substring.                |
+| `match({RegExp pattern, String? errorMessage})`         | Validates that the input matches the given regular expression pattern.    |
+| `startsWith({String prefix, String? errorMessage})`     | Validates that the input starts with the specified substring.             |
+| `endsWith({String suffix, String? errorMessage})`       | Validates that the input ends with the specified substring.               |
+| `digitsOnly({String? errorMessage})`                    | Validates that the input consists of digits only.                         |
+| `email({String? errorMessage})`                         | Validates that the input is a valid email address.                        |
+| `phoneNumber({String? errorMessage})`                   | Validates that the input is a valid phone number.                         |
+| `creditCard({String? errorMessage})`                    | Validates that the input is a valid credit card number.                   |
+| `inList({List allowed, String? errorMessage})`          | Validates that the input is included in the specified list.               |
+| `notInList({List disallowed, String? errorMessage})`    | Validates that the input is not included in the specified list.           |
+| `date({String? errorMessage})`                          | Validates that the input is a valid date.                                 |
 
 ### Custom Validation Rules
 
@@ -164,12 +161,10 @@ Flutter Vali supports localization for default error messages in the following l
 - Bulgarian (bg)
 - Catalan (ca)
 - Chinese Simplified (zh)
-- Chinese Traditional (zh_Hant)
 - Croatian (hr)
 - Czech (cs)
 - Danish (da)
 - Dutch (nl)
-- British English (en_GB)
 - Estonian (et)
 - Finnish (fi)
 - French (fr)
@@ -188,7 +183,6 @@ Flutter Vali supports localization for default error messages in the following l
 - Malay (ms)
 - Norwegian (no)
 - Polish (pl)
-- Brazilian Portuguese (pt_BR)
 - Portuguese (pt)
 - Romanian (ro)
 - Russian (ru)
